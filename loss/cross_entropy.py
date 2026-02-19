@@ -1,7 +1,7 @@
 import math
 
 from core.errors import VectorError
-from vector import Vector
+from models.vector import Vector
 
 
 class CrossEntropy:
