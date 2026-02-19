@@ -23,3 +23,10 @@ class MatrixSumError(MatrixError):
 
 class MatrixMultiplicationError(MatrixError):
     pass
+
+
+# Loss Function Errors
+
+class LossError(MLError):
+    pass
+

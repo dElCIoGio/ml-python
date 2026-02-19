@@ -1,8 +1,9 @@
 from __future__ import annotations
 
 
-from core.errors import MatrixSumError, MatrixMultiplicationError
+from core.errors import MatrixSumError, MatrixMultiplicationError, MatrixError
 from protocols.activation_function import ActivationFn
+from protocols.loss_function import LossFn
 from vector import Vector
 
 
@@ -53,6 +54,17 @@ class Matrix:
         for r in range(self.rows):
             self.matrix[r].activate(activation_fn=activation_fn)
 
+    def loss(self, y: Matrix, fn: LossFn) -> float:
+        if self.rows != y.rows or self.columns != y.columns:
+            raise MatrixError("The two matrices must have the same number of rows and columns")
+
+        losses = 0
+
+        for r in range(self.rows):
+            losses += fn.loss(self.matrix[r], y[r])
+            print(losses)
+
+        return losses / self.rows
 
     def fill(self, value: float) -> None:
         for c in range(self._cols):

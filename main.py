@@ -1,14 +1,10 @@
-from activation.softmax import Softmax
-from vector import Vector
+from loss.cross_entropy import CrossEntropy
+from matrix import Matrix
 
-m1 = Vector([1, 2, 3])
+p = Matrix([[0.7, 0.2, 0.1], [0.1, 0.8, 0.1]])
 
-a = Softmax()
+y = Matrix([[1, 0, 0], [0, 1, 0]])
 
-m1.activate(a)
+loss = CrossEntropy()
 
-print(m1)
-
-
-
-
+print(p.loss(y, loss))
